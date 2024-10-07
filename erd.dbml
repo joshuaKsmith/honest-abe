@@ -1,0 +1,61 @@
+Table politicians {
+    id int [pk]
+    name varchar
+}
+
+Table interests {
+    id int [pk]
+    about varchar
+}
+
+Table pacs {
+    id int [pk]
+    registeredName varchar
+}
+
+Table corporations {
+    id int [pk]
+    company varchar
+}
+
+Table legislations {
+    id int [pk]
+    name varchar
+    interestId int
+}
+
+Table politicianLegislations {
+    id int [pk]
+    politicianId int
+    legislationId int
+}
+
+Table pacDonations {
+    id int [pk]
+    pacId int
+    politicianId int
+    amount int
+}
+
+Table corporateInterests {
+    id int [pk]
+    corporationId int
+    interestId int
+}
+
+Table corporateDonations {
+    id int [pk]
+    corporationId int
+    pacId int
+    amount int
+}
+
+ref: politicians.id < politicianLegislations.politicianId
+ref: politicians.id < pacDonations.politicianId
+ref: interests.id < legislations.interestId
+ref: interests.id < corporateInterests.interestId
+ref: pacs.id < pacDonations.pacId
+ref: pacs.id < corporateDonations.pacId
+ref: corporations.id < corporateInterests.corporationId
+ref: corporations.id < corporateDonations.corporationId
+ref: legislations.id < politicianLegislations.legislationId
