@@ -22,11 +22,9 @@ export const GetPacs = async () => {
             <div class="pac__donors">
                 <h2>Donors</h2>
                 <ul>
-                    ${
-                        filteredDonations.map((donation) => {
-                            return `<li>${donation.corporation.company} ($${donation.amount})</li>`
-                        }).join("")
-                    }
+                    ${filteredDonations.map((donation) => {
+                        return `<li>${donation.corporation.company} (${donation.amount.toLocaleString("en-US", {style:"currency", currency:"USD"})})</li>`
+                    }).join("")}
                 </ul>
             </div>
         </section>`
